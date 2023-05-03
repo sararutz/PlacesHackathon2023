@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ThriftAR</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #D4E4F7;
+        overflow-x: hidden; /* hide horizontal scrollbar */
+      }
+      
+      h1 {
+        font-size: 3em;
+        text-align: center;
+        margin: 1em 0;
+        color: #000000;
+        text-shadow: 2px 2px #FFFFFF;
+      }
+      
+      h2 {
+        font-size: 2em;
+        margin: 2em 0 1em 2em; /* add more space on the left */
+        color: #000000;
+        text-shadow: 1px 1px #FFFFFF;
+      }
+      
+      p {
+        font-size: 1.2em;
+        text-align: center;
+        color: #333;
+        margin: 1em 0;
+      }
+      
+      iframe {
+        width: 100%;
+        height: 600px;
+        border: 2px solid #FFA500;
+      }
+      
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2em;
+        }
+        
+        h2 {
+          font-size: 1.5em;
+        }
+        
+        iframe {
+          height: 400px;
+        }
+      }
+      
+      .search-container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-right: 2em;
+        margin-top: 1em;
+      }
+      
+      .search-container input[type=text], .scan-button, .swipe-button, .browse-button {
+        padding: 0.5em;
+        margin-right: 0.5em;
+        border-radius: 0.5em;
+        border: none;
+        height: 1em;
+      }
+      
+      .scan-button, .swipe-button, .browse-button {
+        background-color: #FFFFFF;
+        color: #000000;
+        text-decoration: none;
+        font-size: 0.7em;
+        text-align: center;
+      }
+      
+      .scan-button:hover, .swipe-button:hover, .browse-button:hover {
+        background-color: #000000;
+        color: #000000;
+        cursor: pointer;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <h1>Browse by category <img src="https://cdn.glitch.global/3d8d602f-8446-473b-91db-d1fb762cae01/logo.png?v=1683103349503" alt="ThriftAR logo" width="200"></h1>
+    <div class="search-container">
+      <a class="scan-button" href="https://glamorous-solid-river.glitch.me/scan.html">SCAN PRODUCTS</a>
+      <a class="swipe-button" href="https://glamorous-solid-river.glitch.me/swipe.html">SWIPE PRODUCTS</a>
+      <a class="browse-button" href="https://glamorous-solid-river.glitch.me/browse.html">BROWSE PRODUCTS</a>
+      <form>
+        <input type="text" placeholder="Search...">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+    <p>Welcome to ThriftAR, where you can find the best deals on secondhand items! Our platform lets you browse items in Augmented Reality mode, so you can see them up close and personal. </p>
+    
+    <h2>Electronics</h2>
+    <iframe src="https://www.sararutz.ch/gallery/index.html"></iframe>
+      
+    <h2>Furniture</h2>
+    <iframe src="https://www.sararutz.ch/gallery2/index.html"></iframe>
+    
+      
+    <p>
+      This project was created during the
+      <a href="https://places-festival.de">Places Festival</a> Hackathon 2023 by
+      Sara Rutz, Tobias Weiss, Vadym Kuzyak, and Philipp Petry.
+    </p>
+  </body>
+</html>
