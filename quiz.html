@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ThriftAR</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #D4E4F7;
+        overflow-x: hidden; /* hide horizontal scrollbar */
+      }
+      
+      h1 {
+        font-size: 3em;
+        text-align: center;
+        margin: 1em 0;
+        color: #000000;
+        text-shadow: 2px 2px #FFFFFF;
+      }
+      
+      h2 {
+        font-size: 2em;
+        margin: 2em 0 1em 2em; /* add more space on the left */
+        color: #000000;
+        text-shadow: 1px 1px #FFFFFF;
+      }
+      
+      p {
+        font-size: 1.2em;
+        text-align: center;
+        color: #333;
+        margin: 1em 0;
+      }
+      
+      iframe {
+        width: 100%;
+        height: 600px;
+        border: 2px solid #FFA500;
+      }
+      
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2em;
+        }
+        
+        h2 {
+          font-size: 1.5em;
+        }
+        
+        iframe {
+          height: 400px;
+        }
+      }
+      
+      .search-container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-right: 2em;
+        margin-top: 1em;
+      }
+      
+      .search-container input[type=text], .scan-button, .swipe-button, .browse-button {
+        padding: 0.5em;
+        margin-right: 0.5em;
+        border-radius: 0.5em;
+        border: none;
+        height: 1em;
+      }
+      
+      .scan-button, .swipe-button, .browse-button {
+        background-color: #FFFFFF;
+        color: #000000;
+        text-decoration: none;
+        font-size: 0.7em;
+        text-align: center;
+      }
+      
+      .scan-button:hover, .swipe-button:hover, .browse-button:hover {
+        background-color: #000000;
+        color: #000000;
+        cursor: pointer;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <h1>CREATE USER PROFILE <img src="https://cdn.glitch.global/3d8d602f-8446-473b-91db-d1fb762cae01/logo.png?v=1683103349503" alt="ThriftAR logo" width="200"></h1>
+    <div class="search-container">
+      <a class="scan-button" href="https://glamorous-solid-river.glitch.me/scan.html">SCAN PRODUCTS</a>
+      <a class="swipe-button" href="https://glamorous-solid-river.glitch.me/swipe.html">SWIPE PRODUCTS</a>
+      <a class="browse-button" href="https://glamorous-solid-river.glitch.me/browse.html">BROWSE PRODUCTS</a>
+      <form>
+        <input type="text" placeholder="Search...">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+    <p>Welcome to ThriftAR, where you can find the best deals on secondhand items! Our platform lets you browse items in Augmented Reality mode, so you can see them up close and personal. </p>
+    <h2>
+      QUIZ 
+    </h2>
+    <p>
+      This quiz helps you to create a user profile.
+    </p>
+    <div style="text-align:center;">
+  <form>
+    <h3>What is your preferred style?</h3>
+    <label>
+      <input type="radio" name="style" value="minimal">
+      Minimal
+    </label>
+    <label>
+      <input type="radio" name="style" value="retro">
+      Retro
+    </label>
+    <label>
+      <input type="radio" name="style" value="antique">
+      Antique
+    </label>
+
+    <h3>What size of items are you looking for?</h3>
+    <label>
+      <input type="radio" name="size" value="small">
+      Small
+    </label>
+    <label>
+      <input type="radio" name="size" value="medium">
+      Medium
+    </label>
+    <label>
+      <input type="radio" name="size" value="large">
+      Large
+    </label>
+
+    <h3>What is the preferred distance of the objects?</h3>
+    <label>
+      <input type="radio" name="distance" value="near (less than 1km)">
+      Near
+    </label>
+    <label>
+      <input type="radio" name="distance" value="medium (less than 3km)">
+      Medium
+    </label>
+    <label>
+      <input type="radio" name="distance" value="far (more than 3km)">
+      Far
+    </label>
+
+    <br>
+    <br>
+    <button type="button" id="submit-btn">Submit</button>
+  </form>
+
+  <div id="user-profile" style="display:none">
+    <h3>User Profile</h3>
+    <p id="user-style"></p>
+    <p id="user-size"></p>
+    <p id="user-distance"></p>
+  </div>
+
+  <div id="recommended-items" style="display:none">
+    <h3>Recommended Items</h3>
+    <ul id="item-list"></ul>
+  </div>
+
+  <script>
+    const submitBtn = document.getElementById('submit-btn');
+    submitBtn.addEventListener('click', function() {
+      const styleAnswer = document.querySelector('input[name="style"]:checked');
+      const sizeAnswer = document.querySelector('input[name="size"]:checked');
+      const distanceAnswer = document.querySelector('input[name="distance"]:checked');
+
+      if (styleAnswer && sizeAnswer && distanceAnswer) {
+        // Display user profile
+        const userProfile = document.getElementById('user-profile');
+        userProfile.style.display = 'block';
+
+        // Set user profile text
+        const userStyle = document.getElementById('user-style');
+        userStyle.textContent = 'Style: ' + styleAnswer.value;
+        const userSize = document.getElementById('user-size');
+        userSize.textContent = 'Size: ' + sizeAnswer.value;
+        const userDistance = document.getElementById('user-distance');
+        userDistance.textContent = 'Distance: ' + distanceAnswer.value;
+
+        // Display recommended items based on user profile
+        const recommendedItems = document.getElementById('recommended-items');
+        recommendedItems.style.display = 'block';
+        const itemList = document.getElementById('item-list');
+        itemList.innerHTML = '';
+
+      if (styleAnswer.value === 'minimal' && sizeAnswer.value === 'small' && distanceAnswer.value === 'near') {
+      itemList.innerHTML = '<li>Small plant pot</li><li>Minimalist table lamp</li>';
+    } else if (styleAnswer.value === 'retro' && sizeAnswer.value === 'medium' && distanceAnswer.value === 'medium') {
+      itemList.innerHTML = '<li>Vintage record player</li><li>Retro telephone</li>';
+    } else if (styleAnswer.value === 'antique' && sizeAnswer.value === 'large' && distanceAnswer.value === 'far') {
+      itemList.innerHTML = '<li>Antique grandfather clock</li><li>Victorian-era chandelier</li>';
+    } else {
+         itemList.innerHTML = '<li>No matching items found. Maybe this is interesting: old table</li>';
+    }
+  } else {
+    alert('Please answer all questions');
+  }
+});
+    </script>  
+    
+  
+   
+      
+    <p>
+      This project was created during the
+      <a href="https://places-festival.de">Places Festival</a> Hackathon 2023 by
+      Sara Rutz, Tobias Weiss, Vadym Kuzyak, and Philipp Petry.
+    </p>
+  </body>
+    </html>
